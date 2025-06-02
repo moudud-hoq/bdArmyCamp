@@ -5,29 +5,131 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Support the Army in Combating Crime Nationwide and Ensuring Public Safety">
-    <meta name="keywords"
-        content="bangladesh-army, crime-report , safety, public-awareness, army-camp, emergency-contacts, bd-security, html, github-pages">
+    <meta name="keywords" content="bangladesh-army, crime-report, safety, public-awareness, army-camp, emergency-contacts, bd-security">
     <meta name="author" content="Moudud Hoq">
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="./src/style.css">
+    <!-- Leaflet plugins CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-search@3.0.2/dist/leaflet-search.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol@0.76.0/dist/L.Control.Locate.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="src/style.css">
     <link rel="icon"
         href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Roundel_of_Bangladesh_%E2%80%93_Army_Aviation.svg/250px-Roundel_of_Bangladesh_%E2%80%93_Army_Aviation.svg.png"
         type="image/x-icon">
-    <title>BD Army Camp</title>
+    <title>BD Army Camp Locations & Contacts</title>
 </head>
 
 <body>
-    <h1>Bangladesh Army Location & Contact</h1>
-    <div class="mapBody">
-        <div class="map"></div>
+    <!-- Loading Animation -->
+    <div class="loader">
+        <div class="spinner"></div>
+        <p>Loading Army Camp Locations...</p>
     </div>
 
+    <!-- Header Section -->
+    <header>
+        <div class="header-content">
+            <h1>Bangladesh Army Camp Locations & Contacts</h1>
+            <div class="language-toggle">
+                <button id="lang-en" class="active">English</button>
+                <button id="lang-bn">বাংলা</button>
+            </div>
+        </div>
+    </header>
 
-    <!-- JavaScript Link -->
+    <!-- Main Content -->
+    <main>
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search by location...">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="filter-container">
+                <select id="division-filter">
+                    <option value="all">All Divisions</option>
+                    <option value="dhaka">Dhaka</option>
+                    <option value="chattogram">Chattogram</option>
+                    <option value="khulna">Khulna</option>
+                    <option value="barishal">Barishal</option>
+                    <option value="mymensingh">Mymensingh</option>
+                    <option value="rajshahi">Rajshahi</option>
+                    <option value="rangpur">Rangpur</option>
+                    <option value="sylhet">Sylhet</option>
+                </select>
+                
+                <button id="current-location-btn" title="Find my location">
+                    <i class="fas fa-location-arrow"></i>
+                </button>
+                
+                <button id="emergency-btn" title="Emergency Contact">
+                    <i class="fas fa-phone-alt"></i> EMERGENCY
+                </button>
+            </div>
+        </div>
+
+        <!-- Map Container -->
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+
+        <!-- Location List -->
+        <div class="location-list-container">
+            <h2>All Army Camp Locations</h2>
+            <div id="location-list"></div>
+        </div>
+    </main>
+
+    <!-- About/Disclaimer Section -->
+    <section class="about-section">
+        <h2>About This Service</h2>
+        <p>This platform provides contact information for Bangladesh Army camps across the country to help citizens report crimes and seek assistance in emergencies.</p>
+        <p><strong>Disclaimer:</strong> The information provided is for emergency use only. Please verify contact numbers before use.</p>
+        <div class="social-sharing">
+            <button id="share-fb"><i class="fab fa-facebook"></i></button>
+            <button id="share-twitter"><i class="fab fa-twitter"></i></button>
+            <button id="share-whatsapp"><i class="fab fa-whatsapp"></i></button>
+        </div>
+    </section>
+
+    <!-- Feedback Modal -->
+    <div class="modal" id="feedback-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Provide Feedback</h2>
+            <form id="feedback-form">
+                <div class="form-group">
+                    <label for="feedback-type">Feedback Type:</label>
+                    <select id="feedback-type">
+                        <option value="general">General Feedback</option>
+                        <option value="correction">Information Correction</option>
+                        <option value="emergency">Emergency Report</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-message">Message:</label>
+                    <textarea id="feedback-message" required></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-search@3.0.2/dist/leaflet-search.min.js"></script>
+    <script src="https://unpkg.com/leaflet.locatecontrol@0.76.0/dist/L.Control.Locate.min.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <!-- Main JavaScript File -->
     <script src="src/main.js"></script>
 </body>
 
