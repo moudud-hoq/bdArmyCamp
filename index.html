@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Support the Army in Combating Crime Nationwide and Ensuring Public Safety">
-    <meta name="keywords" content="bangladesh-army, crime-report, safety, public-awareness, army-camp, emergency-contacts, bd-security">
+    <meta name="keywords"
+        content="bangladesh-army, crime-report, safety, public-awareness, army-camp, emergency-contacts, bd-security">
     <meta name="author" content="Moudud Hoq">
-   
+
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -25,7 +26,7 @@
 </head>
 
 <body>
-       <!-- Loading Animation -->
+    <!-- Loading Animation -->
     <div class="loader">
         <div class="spinner"></div>
         <p>Loading Army Camp Locations...</p>
@@ -35,7 +36,8 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Roundel_of_Bangladesh_%E2%80%93_Army_Aviation.svg/250px-Roundel_of_Bangladesh_%E2%80%93_Army_Aviation.svg.png" alt="Army Logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Roundel_of_Bangladesh_%E2%80%93_Army_Aviation.svg/250px-Roundel_of_Bangladesh_%E2%80%93_Army_Aviation.svg.png"
+                    alt="Army Logo">
                 <h1>Bangladesh Army Camps</h1>
             </div>
             <div class="language-toggle">
@@ -53,21 +55,7 @@
                 <input type="text" id="search-input" placeholder="Search by location...">
                 <div class="search-results" id="search-results"></div>
             </div>
-            
-            <div class="filter-container">
-                <select id="division-filter">
-                    <option value="all">All Divisions</option>
-                    <option value="dhaka">Dhaka Division</option>
-                    <option value="chattogram">Chattogram Division</option>
-                    <option value="khulna">Khulna Division</option>
-                    <option value="barishal">Barishal Division</option>
-                    <option value="mymensingh">Mymensingh Division</option>
-                    <option value="rajshahi">Rajshahi Division</option>
-                    <option value="rangpur">Rangpur Division</option>
-                    <option value="sylhet">Sylhet Division</option>
-                </select>
-            </div>
-            
+
             <div class="action-buttons">
                 <button class="action-btn current-location" id="current-location-btn">
                     <i class="fas fa-location-arrow"></i> My Location
@@ -87,27 +75,42 @@
     <!-- Location List -->
     <div class="location-list-container">
         <h2 class="section-title">All Army Camp Locations</h2>
+        <div class="filter-container">
+            <select id="division-filter">
+                <option value="all">All Divisions</option>
+                <option value="dhaka">Dhaka Division</option>
+                <option value="chattogram">Chattogram Division</option>
+                <option value="khulna">Khulna Division</option>
+                <option value="barishal">Barishal Division</option>
+                <option value="mymensingh">Mymensingh Division</option>
+                <option value="rajshahi">Rajshahi Division</option>
+                <option value="rangpur">Rangpur Division</option>
+                <option value="sylhet">Sylhet Division</option>
+            </select>
+        </div>
         <div id="location-list"></div>
     </div>
 
     <!-- About Section -->
     <div class="about-section">
         <h2 class="section-title">About This Service</h2>
-        <p>This platform provides contact information for Bangladesh Army camps across the country to help citizens report crimes and seek assistance in emergencies.</p>
-        
+        <p>This platform provides contact information for Bangladesh Army camps across the country to help citizens
+            report crimes and seek assistance in emergencies.</p>
+
         <div class="disclaimer">
             <h3><i class="fas fa-exclamation-triangle"></i> Disclaimer</h3>
-            <p>The information provided is for emergency use only. Please verify contact numbers before use. This is not an official Bangladesh Army website.</p>
+            <p>The information provided is for emergency use only. Please verify contact numbers before use. This is not
+                an official Bangladesh Army website.</p>
         </div>
     </div>
 
-<!-- JavaScript Libraries -->
+    <!-- JavaScript Libraries -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-search@3.0.2/dist/leaflet-search.min.js"></script>
     <script src="https://unpkg.com/leaflet.locatecontrol@0.76.0/dist/L.Control.Locate.min.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.min.js"></script>
-    
+
     <!-- Main JavaScript File -->
     <script src="src/main.js"></script>
 </body>
