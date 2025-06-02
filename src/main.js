@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const notice = "সারাদেশে অপরাধ দমনে সেনাবাহিনীকে সহযোগিতা করুন। আপনার এলাকার নম্বর মোবাইলে সেভ করে রাখুন।";
 
     L.control.attribution({ prefix: false })
-        .addAttribution('<span style="font-weight:bold;">' + notice + '</span>')
+        .addAttribution('<span style="font-weight:bold; color:red;">' + notice + '</span>')
         .addTo(map);
 
     locations.forEach(function (item) {
